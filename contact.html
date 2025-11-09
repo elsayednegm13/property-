@@ -142,6 +142,7 @@
                 </div>
 
                  <form name="contact" method="POST" data-netlify="true" data-aos="fade-up" class="row col-12 col-lg-8 justify-content-center" >
+                     <input type="hidden" name="form-name" value="contact" />
                     <div class="col-lg-5 mb-4 col-6">
                         <input class="form-control" name="YourName" placeholder="Your Name" type="text">
                     </div>
@@ -250,7 +251,25 @@
 
 
 
+<script>
+const handleSubmit = event => {
+  event.preventDefault();
 
+  const myForm = event.target;
+  const formData = new FormData(myForm);
+
+  fetch("/", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams(formData).toString()
+  })
+    .then(() => console.log("Form successfully submitted"))
+    .catch(error => alert(error));
+};
+
+document.querySelector("form").addEventListener("submit", handleSubmit);
+
+</script>
 
     <script src="js/bootstrap.bundle.js"></script>
     <script src="js/all.js"></script>
@@ -263,5 +282,6 @@
 
 
 </html>
+
 
 
