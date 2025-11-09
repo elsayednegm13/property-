@@ -253,7 +253,7 @@
 
 <script>
 const handleSubmit = event => {
-  event.preventDefault();
+  event.preventDefault(); // نمنع الإرسال الافتراضي مؤقتًا
 
   const myForm = event.target;
   const formData = new FormData(myForm);
@@ -263,11 +263,19 @@ const handleSubmit = event => {
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams(formData).toString()
   })
-    .then(() => console.log("Form successfully submitted"))
+    .then(() => {
+      console.log("Form successfully submitted");
+
+      // ✅ إعادة تحميل الصفحة تلقائي بعد الإرسال
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000); // بعد ثانية واحدة (تقدر تغير الرقم بالمللي ثانية)
+    })
     .catch(error => alert(error));
 };
 
 document.querySelector("form").addEventListener("submit", handleSubmit);
+
 </script>
 
     <script src="js/bootstrap.bundle.js"></script>
@@ -281,6 +289,7 @@ document.querySelector("form").addEventListener("submit", handleSubmit);
 
 
 </html>
+
 
 
 
