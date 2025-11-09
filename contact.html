@@ -263,9 +263,11 @@ const handleSubmit = event => {
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams(formData).toString()
   })
-    .then(() => navigate("/thank-you/"))
+    .then(() => console.log("Form successfully submitted"))
     .catch(error => alert(error));
 };
+
+document.querySelector("form").addEventListener("submit", handleSubmit);
 </script>
 
     <script src="js/bootstrap.bundle.js"></script>
@@ -279,6 +281,7 @@ const handleSubmit = event => {
 
 
 </html>
+
 
 
 
