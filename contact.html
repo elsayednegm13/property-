@@ -142,7 +142,7 @@
                 </div>
 
                  <form name="contact" method="POST" data-netlify="true" data-aos="fade-up" class="row col-12 col-lg-8 justify-content-center" >
-                     <input type="hidden" name="form-name" value="contact" />
+                     <input type="hidden" name="form-name" value="name_of_my_form" />
                     <div class="col-lg-5 mb-4 col-6">
                         <input class="form-control" name="YourName" placeholder="Your Name" type="text">
                     </div>
@@ -263,12 +263,25 @@ const handleSubmit = event => {
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams(formData).toString()
   })
-    .then(() => console.log("Form successfully submitted"))
+    .then(() => navigate("/thank-you/"))
     .catch(error => alert(error));
 };
 
-document.querySelector("form").addEventListener("submit", handleSubmit);
-
+    return (
+  <form
+    data-netlify="true"
+    name="pizzaOrder"
+    method="post"
+    onSubmit={handleSubmit}
+  >
+    <input type="hidden" name="form-name" value="pizzaOrder" />
+    <label>
+      What order did the pizza give to the pineapple?
+      <input name="order" type="text" onChange={handleChange} />
+    </label>
+    <input type="submit" />
+  </form>
+);
 </script>
 
     <script src="js/bootstrap.bundle.js"></script>
@@ -282,6 +295,7 @@ document.querySelector("form").addEventListener("submit", handleSubmit);
 
 
 </html>
+
 
 
 
